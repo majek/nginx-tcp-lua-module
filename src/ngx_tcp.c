@@ -422,7 +422,11 @@ ngx_tcp_add_addrs(ngx_conf_t *cf, ngx_tcp_port_t *mport,
         addrs[i].conf.ssl = addr[i].ssl;
 #endif
 
+#if !defined(nginx_version) || nginx_version < 1005008
         len = ngx_sock_ntop(addr[i].sockaddr, buf, NGX_SOCKADDR_STRLEN, 1);
+#else
+        len = ngx_sock_ntop(addr[i].sockaddr, addr[i].socklen, buf, NGX_SOCKADDR_STRLEN, 1);
+#endif
 
         p = ngx_pnalloc(cf->pool, len);
         if (p == NULL) {
@@ -480,7 +484,11 @@ ngx_tcp_add_addrs6(ngx_conf_t *cf, ngx_tcp_port_t *mport,
         addrs6[i].conf.ssl = addr[i].ssl;
 #endif
 
+#if !defined(nginx_version) || nginx_version < 1005008
         len = ngx_sock_ntop(addr[i].sockaddr, buf, NGX_SOCKADDR_STRLEN, 1);
+#else
+        len = ngx_sock_ntop(addr[i].sockaddr, addr[i].socklen, buf, NGX_SOCKADDR_STRLEN, 1);
+#endif
 
         p = ngx_pnalloc(cf->pool, len);
         if (p == NULL) {

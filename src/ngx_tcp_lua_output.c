@@ -33,12 +33,14 @@ ngx_tcp_lua_ngx_echo(lua_State *L, unsigned newline)
     size_t                       len;
     size_t                       size;
     ngx_buf_t                   *b;
-    ngx_chain_t                 *cl, *chain;
+    ngx_chain_t                 *cl, *chain = NULL;
     int                          i;
     int                          nargs;
     int                          type;
     const char                  *msg;
     //ngx_buf_tag_t                tag;
+
+    chain = chain;
 
     lua_pushlightuserdata(L, &ngx_tcp_lua_request_key);
     lua_rawget(L, LUA_GLOBALSINDEX);
