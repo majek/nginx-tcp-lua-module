@@ -100,8 +100,8 @@ ngx_tcp_lua_init_globals(ngx_conf_t *cf, lua_State *L)
             "lua initializing lua globals");
 
     /* {{{ remove unsupported globals */
-    lua_pushnil(L);
-    lua_setfield(L, LUA_GLOBALSINDEX, "coroutine");
+    /* lua_pushnil(L); */
+    /* lua_setfield(L, LUA_GLOBALSINDEX, "coroutine"); */
     /* }}} */
 
 
